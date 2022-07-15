@@ -937,6 +937,29 @@ function activeCommonKey(element) {
 
 // function finishPractice() { }
 
+function setAsciiKeyboardKeyText(element, key_info) {
+    if (key_info.is_ascii_letter) {
+        const div1 = document.createElement("div")
+        div1.innerHTML = key_info.ascii_text_shift
+        element.appendChild(div1)
+    } else {
+        const div1 = document.createElement("div")
+        const div2 = document.createElement("div")
+        div1.innerHTML = key_info.ascii_text_shift
+        div2.innerHTML = key_info.ascii_text
+        element.appendChild(div1)
+        element.appendChild(div2)
+    }
+}
+
+function setAsciiKeyboardKeyRUText(element, key_info) {
+    if (key_info.is_ru_letter) {
+        const div1 = document.createElement("div")
+        div1.innerHTML = key_info.ru_text_shift
+        element.appendChild(div1)
+    }
+}
+
 function createAsciiKeyboard() {
     const keyboard = document.querySelector("#ascii-keyboard-main")
     for (let line of ascii_keyboard_layout) {
@@ -948,18 +971,19 @@ function createAsciiKeyboard() {
                 const ascii_key = document.createElement("div")
                 ascii_key.classList.add("ascii-key")
                 ascii_key.setAttribute("key-code", key.key_code)
-                if (key.is_ascii_letter) {
-                    const div1 = document.createElement("div")
-                    div1.innerHTML = key.ascii_text_shift
-                    ascii_key.appendChild(div1)
-                } else {
-                    const div1 = document.createElement("div")
-                    const div2 = document.createElement("div")
-                    div1.innerHTML = key.ascii_text_shift
-                    div2.innerHTML = key.ascii_text
-                    ascii_key.appendChild(div1)
-                    ascii_key.appendChild(div2)
-                }
+                setAsciiKeyboardKeyText(ascii_key, key)
+                // if (key.is_ascii_letter) {
+                //     const div1 = document.createElement("div")
+                //     div1.innerHTML = key.ascii_text_shift
+                //     ascii_key.appendChild(div1)
+                // } else {
+                //     const div1 = document.createElement("div")
+                //     const div2 = document.createElement("div")
+                //     div1.innerHTML = key.ascii_text_shift
+                //     div2.innerHTML = key.ascii_text
+                //     ascii_key.appendChild(div1)
+                //     ascii_key.appendChild(div2)
+                // }
                 ascii_key.addEventListener("click", (event) => {
                     event.stopPropagation()
                     activeCommonKey(ascii_key)
@@ -1094,7 +1118,14 @@ document.addEventListener("DOMContentLoaded", () => {
         event.stopPropagation()
         // console.log(event.code)
         if (document.querySelector("#practice-page").style.display !== "none") {
-            if (event.key === "Enter") {
+            if (event.code === "ShiftLeft" || event.code === "ShiftRight") {
+                for (let key of document.querySelectorAll("#ascii-keyboard-main .ascii-key")) {
+                    clearChildren(key)
+                    setAsciiKeyboardKeyRUText(key, getKeyByCode(key.getAttribute("key-code")))
+                }
+            }
+
+            if (event.code === "Enter") {
                 activeEnterKey()
                 return
             }
@@ -1102,6 +1133,15 @@ document.addEventListener("DOMContentLoaded", () => {
             const cur_key = document.querySelector(`#ascii-keyboard .ascii-key[key-code=\"${event.code}\"]`)
             if (cur_key !== null) {
                 activeCommonKey(cur_key)
+            }
+        }
+    })
+
+    window.addEventListener("keyup", (event) => {
+        if (event.code === "ShiftLeft" || event.code === "ShiftRight") {
+            for (let key of document.querySelectorAll("#ascii-keyboard-main .ascii-key")) {
+                clearChildren(key)
+                setAsciiKeyboardKeyText(key, getKeyByCode(key.getAttribute("key-code")))
             }
         }
     })
