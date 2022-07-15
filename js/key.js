@@ -858,11 +858,17 @@ function updateWrongAnswers() {
     }
 }
 
+function disableAsciiKeyboardHighlight() {
+    const ascii_keyboard_keys = document.querySelectorAll("#ascii-keyboard-main .ascii-key.ascii-key-active")
+    for (let key of ascii_keyboard_keys) {
+        key.classList.remove("ascii-key-active")
+    }
+}
+
 function initialPracticePage() {
     const practice_page = document.querySelector("#practice-page")
     const score_panel = practice_page.querySelector("#score-panel")
     const current_key = practice_page.querySelector("#current-key>.ascii-key")
-    const ascii_keyboard_keys = document.querySelectorAll("#ascii-keyboard-main .ascii-key.ascii-key-active")
 
     clearChildren(score_panel)
     clearChildren(current_key)
@@ -873,9 +879,7 @@ function initialPracticePage() {
         score_panel.appendChild(dot)
     }
 
-    for (let key of ascii_keyboard_keys) {
-        key.classList.remove("ascii-key-active")
-    }
+    disableAsciiKeyboardHighlight()
 
     practice_trace.reset()
     practice_trace.render()
@@ -911,6 +915,7 @@ function activeEnterKey() {
             practice_trace.addWrongAnswer(new WrongAnswer(ru_letter, practice_trace.current_key, getKeyByCode(ru_letter.key_code)))
         }
         practice_trace.current_key = null
+        disableAsciiKeyboardHighlight()
         clearChildren(document.querySelector("#current-key>.ascii-key"))
         if (practice_trace.is_finish) {
             finishCallback()
@@ -924,10 +929,7 @@ function activeCommonKey(element) {
         return
     }
 
-    const keys = document.querySelectorAll("#ascii-keyboard-main .ascii-key.ascii-key-active")
-    for (let key of keys) {
-        key.classList.remove("ascii-key-active")
-    }
+    disableAsciiKeyboardHighlight()
 
     element.classList.add("ascii-key-active")
     practice_trace.press(cur_key)
