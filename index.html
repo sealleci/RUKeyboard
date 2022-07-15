@@ -1,0 +1,159 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>RU Keyboard Practice</title>
+</head>
+
+<body>
+    <div id="header">
+        <div class="header-col"></div>
+        <div class="header-col">
+            <div class="button hover-button" id="show-ru-keyboard-button">
+                Show RU keyboard
+            </div>
+        </div>
+    </div>
+    <div id="ru-keyboard-modal" style="display: none;">
+        <div id="ru-keyboard">
+            <div id="ru-keyboard-header">
+                <div id="close-ru-keyboard-button">
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+            <div id="ru-keyboard-main">
+                <!-- 
+                <div class="keyboard-line">
+                    <div class="ru-key">
+                        <div class="ru-key-l">
+                            <div>~</div>
+                            <div>`</div>
+                        </div>
+                        <div class="ru-key-r">
+                            <div></div>
+                            <div>Ё</div>
+                        </div>
+                    </div>
+                </div>
+                -->
+            </div>
+        </div>
+    </div>
+    <div id="main">
+        <div id="start-page" class="page" style="display: flex;">
+            <div id="start-page-title">
+                RU Keyboard Practice
+            </div>
+            <div class="button hover-button" id="start-button">
+                Start
+            </div>
+        </div>
+        <div id="practice-page" class="page" style="display: none;">
+            <div id="score-panel">
+                <!-- 
+                <div class="score-dot score-dot-right"></div>
+                <div class="score-dot score-dot-wrong"></div>
+                -->
+            </div>
+            <div id="practice-page-body">
+                <div id="ru-letter-card">
+                    <div id="practice-progress">
+                        <div></div>
+                        <div>/</div>
+                        <div></div>
+                    </div>
+                    <div class="ru-letter-display">
+                        <div></div>
+                        <div></div>
+                    </div>
+                    <div id="current-key">
+                        <div class="ascii-key">
+                            <!-- <div>:</div>
+                            <div>;</div> -->
+                        </div>
+                    </div>
+                </div>
+                <div id="ascii-keyboard">
+                    <div id="ascii-keyboard-main">
+                        <!-- 
+                        <div class="keyboard-line">
+                            <div class="ascii-key ascii-key-active">
+                                <div>D</div>
+                            </div>
+                        </div>
+                        -->
+                    </div>
+                    <div id="ascii-keyboard-enter">
+                        <div>
+                            <div>Enter</div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="finish-button" class="button hover-button">
+                    Finish practice
+                </div>
+            </div>
+        </div>
+        <div id="summary-page" class="page" style="display: none;">
+            <div id="score-display">
+                <div id="right-rate">
+                    <div></div>
+                    <div>%</div>
+                </div>
+                <div id="time-cost">
+                    <div></div>
+                    <div>seconds</div>
+                </div>
+            </div>
+            <div id="summary-page-buttons">
+                <div class="button hover-button" id="again-button">
+                    Practice Again
+                </div>
+                <div class="button hover-button" id="back-button">
+                    Back
+                </div>
+            </div>
+            <div id="review">
+                <div id="review-title">
+                    Wrong answers
+                </div>
+                <div id="review-list">
+                    <!-- 
+                    <div class="review-item">
+                        <div class="ru-letter-display">
+                            <div>Д</div>
+                            <div>д</div>
+                        </div>
+                        <div class="review-keys">
+                            <div class="your-key">
+                                <div class="key-title">Yours</div>
+                                <div class="ascii-key">
+                                    <div>A</div>
+                                </div>
+                            </div>
+                            <div class="right-key">
+                                <div class="key-title">Right</div>
+                                <div class="ascii-key">
+                                    <div>:</div>
+                                    <div>;</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    -->
+                </div>
+            </div>
+            <div class="footer"></div>
+        </div>
+    </div>
+</body>
+
+<script src="./js/key.js"></script>
+
+</html>
