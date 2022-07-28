@@ -6,6 +6,6 @@
 - Press Shift key to toggle between ascii and RU letters.
 - Dark neumorphism style.
 
-## Author
+## Staff
 
 - Sealleci
